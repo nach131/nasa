@@ -1,13 +1,13 @@
 .text-nach {
-  color: #F7CA6D !important;
+  color: #db362d !important;
 }
 .btn-nach {
   
-  background-color: #D69636;
+  background-color: #db362d;
   color: white;
 }
 .btn-nach:hover{
-  background-color: #b17c2d;
+  background-color: #db362d;
 }
 .bg-nach{
   background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
