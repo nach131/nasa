@@ -7,7 +7,7 @@ async function getDatos(url) {
   const datos = await respuesta.json()
   return datos
 }
-const marteList = await getDatos("https://images-api.nasa.gov/search?q=Opportunity&page=7")
+const marteList = await getDatos("https://images-api.nasa.gov/search?q=Opportunity&page=23")
 // debugger
 // console.log(marteList)
 
@@ -16,7 +16,8 @@ function FotoItemTemplate(marte){
   return(
     `<div class="col-xl-3 col-md-4">
     <div class="card mb-4 shadow-sm" >
-    <img src="${marte.links[0].href}" class="card-img-top" alt="...">
+    <img src="${marte.links[0].href}" class="card-img-top" alt="..." hidden>
+    <div class="card-bg-img" style="background-image:url(${marte.links[0].href});"></div>
     <div class="card-body">
       <h5 class="card-title mb-0">${marte.data[0].nasa_id}</h5>
       <div class="badges mb-2">
@@ -33,7 +34,7 @@ function FotoItemTemplate(marte){
 const $fotosContenedor = document.querySelector('#fotos')
 
 marteList.collection.items.forEach((marte)=>{
-  console.log(marte)
+  // console.log(marte)
   const HTMLString = FotoItemTemplate(marte)
   const html = document.implementation.createHTMLDocument()
   html.body.innerHTML = HTMLString

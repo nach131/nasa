@@ -54,6 +54,25 @@ background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
 .badge{
   font-size: 60%;
 }
+.card {
+  border-radius: 6px;
+  overflow: hidden;
+}
+p.card-text {
+  line-height: 1.2rem;
+  max-height: 6rem;
+  overflow: hidden;
+  transition: all .3s ease-out 0s;
+}
+
+p.card-text:hover {
+  max-height: 20rem;
+}
+.card-bg-img {
+  height: 208px;
+  background-size: cover;
+  background-position: center center;
+}
 
 #footer {
 background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
