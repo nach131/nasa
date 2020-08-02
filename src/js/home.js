@@ -7,7 +7,7 @@ async function getDatos(url) {
   const datos = await respuesta.json()
   return datos
 }
-const marteList = await getDatos("https://images-api.nasa.gov/search?q=Opportunity&page=23")
+const marteList = await getDatos("https://images-api.nasa.gov/search?q=Opportunity&page=3")
 // debugger
 // console.log(marteList)
 
@@ -29,16 +29,18 @@ function FotoItemTemplate(marte){
   </div>`
   )
 }
-
+function CrearPlantilla(HTMLString){
+  const html = document.implementation.createHTMLDocument()
+  html.body.innerHTML = HTMLString
+  return html.body.children[0]
+}
 
 const $fotosContenedor = document.querySelector('#fotos')
-
 marteList.collection.items.forEach((marte)=>{
   // console.log(marte)
   const HTMLString = FotoItemTemplate(marte)
-  const html = document.implementation.createHTMLDocument()
-  html.body.innerHTML = HTMLString
-  $fotosContenedor.append(html.body.children[0])
+  const AlbumItems = CrearPlantilla(HTMLString)
+  $fotosContenedor.append(AlbumItems)
   // console.log(HTMLString)
 })
 
