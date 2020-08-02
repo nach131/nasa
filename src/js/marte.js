@@ -49,14 +49,14 @@ function renderAlbumList(lista, $contenedor){
   })
 }
 
-const $fotosContenedor = document.querySelector('#fotos')
-renderAlbumList(buscarList.collection.items, $fotosContenedor)
+// const $fotosContenedor = document.querySelector('#fotos')
+// renderAlbumList(buscarList.collection.items, $fotosContenedor)
 
 // const $issContenedor = document.getElementById('iss')
 // renderAlbumList(buscarListISS.collection.items, $issContenedor)
 
-// const $marteContenedor = document.getElementById('marte')
-// renderAlbumList(buscarListMarte.collection.items, $marteContenedor)
+const $marteContenedor = document.getElementById('marte')
+renderAlbumList(buscarListMarte.collection.items, $marteContenedor)
 
 // const $fotosContenedor = document.querySelector('#tierra')
 // renderAlbumList(buscarListTierra.collection.items, $fotosContenedor)
