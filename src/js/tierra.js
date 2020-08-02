@@ -40,6 +40,7 @@ function CrearPlantilla(HTMLString){
 }
 
 function renderAlbumList(lista, $contenedor){
+  $contenedor.children[0].remove() // quitar el spiner
   lista.forEach((lista)=>{
     // console.log(lista)
     const HTMLString = FotoItemTemplate(lista)
