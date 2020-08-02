@@ -58,6 +58,9 @@ background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
   border-radius: 6px;
   overflow: hidden;
 }
+.card-title {
+  font-size: 0.9rem;
+}
 p.card-text {
   line-height: 1.2rem;
   max-height: 6rem;
