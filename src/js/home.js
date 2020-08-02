@@ -7,7 +7,10 @@ async function getDatos(url) {
   const datos = await respuesta.json()
   return datos
 }
-const buscarList = await getDatos("https://images-api.nasa.gov/search?q=dragon&page=3")
+const buscarList = await getDatos("https://images-api.nasa.gov/search?q=Endeavour&page=32")
+const buscarListEndeavour = await getDatos("https://images-api.nasa.gov/search?q=Endeavour&page=32")
+const buscarListTierra = await getDatos("https://images-api.nasa.gov/search?q=earth&page=1")
+const buscarListISS = await getDatos("https://images-api.nasa.gov/search?q=iss&page=1")
 // debugger
 // console.log(buscarList)
 
