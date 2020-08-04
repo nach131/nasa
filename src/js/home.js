@@ -7,7 +7,7 @@ async function getDatos(url) {
   const datos = await respuesta.json()
   return datos
 }
-const buscarList = await getDatos("https://images-api.nasa.gov/search?q=discovery&page=2")
+const buscarList = await getDatos("https://images-api.nasa.gov/search?q=splashdown&page=5")
 const buscarListEndeavour = await getDatos("https://images-api.nasa.gov/search?q=Endeavour&page=32")
 const buscarListMarte = await getDatos("https://images-api.nasa.gov/search?q=Opportunity&page=2")
 const buscarListTierra = await getDatos("https://images-api.nasa.gov/search?q=earth&page=1")
@@ -17,6 +17,8 @@ const buscarListISS = await getDatos("https://images-api.nasa.gov/search?q=iss&p
 
 
 function FotoItemTemplate(foto){
+//   var str = foto.data[0].date_created
+// console.log(str ,str.substr(0, 10))
   return(
     `<div class="col-xl-3 col-md-4">
     <div class="card mb-4 shadow-sm" >
@@ -24,14 +26,16 @@ function FotoItemTemplate(foto){
     <div class="card-bg-img" style="background-image:url(${foto.links[0].href});"></div>
     <div class="card-body">
       <h5 class="card-title mb-0">${foto.data[0].nasa_id}</h5>
+      <span class="badge date">${foto.data[0].date_created.substr(0, 10)}</span>
       <div class="badges mb-2">
-        <span class="badge badge-warning">${foto.data[0].keywords}</span>
+      <span class="badge badge-warning">${foto.data[0].keywords}</span>
       </div>
       <p class="card-text">${foto.data[0].description}</p>
     </div>
     </div>
   </div>`
   )
+
 }
 function CrearPlantilla(HTMLString){
   const html = document.implementation.createHTMLDocument()
@@ -46,7 +50,9 @@ function renderAlbumList(lista, $contenedor){
     const AlbumItems = CrearPlantilla(HTMLString)
     $contenedor.append(AlbumItems)
     // console.log(HTMLString)
-  })
+    // console.log(HTMLString)
+
+  })  
 }
 
 const $fotosContenedor = document.querySelector('#fotos')
@@ -60,6 +66,5 @@ renderAlbumList(buscarList.collection.items, $fotosContenedor)
 
 // const $fotosContenedor = document.querySelector('#tierra')
 // renderAlbumList(buscarListTierra.collection.items, $fotosContenedor)
-
 
 })()

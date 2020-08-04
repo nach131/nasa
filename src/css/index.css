@@ -18,6 +18,10 @@
   padding: 25px;
   border-radius: 4px
 }
+
+.badge.date {
+  padding: 0;
+}
 /* Spinner */
 
 .lds-hourglass {
