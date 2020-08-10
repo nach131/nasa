@@ -1,3 +1,4 @@
+console.log('hola mundo!');
 
 (async function load(){
 
@@ -12,8 +13,9 @@ const buscarListMarte = await getDatos("https://images-api.nasa.gov/search?q=Opp
 const buscarListTierra = await getDatos("https://images-api.nasa.gov/search?q=earth&page=1")
 // const buscarListISS = await getDatos("https://images-api.nasa.gov/search?q=iss&page=1")
 const buscarListISS = await getDatos("https://images-api.nasa.gov/search?q=crew%20dragon%20splashdown&page=1")
+const buscarListCuriosity = await getDatos("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=EUDrgZhfxHUUr5GwtaCDh0FjiAxQsboz8BoR7MCY")
 // debugger
-console.log(buscarListISS)
+console.log(buscarListCuriosity)
 
 
 function FotoItemTemplate(foto){
