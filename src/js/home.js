@@ -13,6 +13,8 @@
   // debugger
   // console.log(buscarList)
 
+
+
   function FotoItemTemplate(foto) {
     //   var str = foto.data[0].date_created
     // console.log(str ,str.substr(0, 10))
@@ -63,6 +65,9 @@
 
   const $fotosContenedor = document.querySelector("#fotos");
 
+ /* =====================================
+          BUSCAR
+======================================*/
   $form.addEventListener("submit",async event => {
     event.preventDefault()
     $spinner.classList.add('lds-hourglass', 'mx-auto', 'd-block');
@@ -70,11 +75,15 @@
     const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
     // debugger
     renderAlbumList(buscado.collection.items, $fotosContenedor);
-    
+    // ElementoEncontrado(buscado.collection.metadata.total_hits);
   })
 
   // renderAlbumList(buscarList.collection.items, $fotosContenedor);
 
+
+  /* =====================================
+          MODAL
+======================================*/
   const $modal = document.getElementById("modal");
   const $overlay = document.getElementById("overlay");
   // const $cerrarModal = document.getElementById("cerrar-modal");
@@ -91,3 +100,16 @@
     $modal.style.animation = "modalOut .8s forwards";
   }
 })();
+/* =====================================
+          Activacion WOW
+======================================*/
+$(function () {
+  new WOW().init();
+});
+// home animacion y cuando carga la web
+$(window).on('load', function () {
+  $("#home-heading-1").addClass("animated fadeInDown");
+  $("#home-heading-2").addClass("animated fadeInLeft");
+  $("#home-text").addClass("animated zoomIn");
+  $("#home-btn").addClass("animated zoomIn");
+});

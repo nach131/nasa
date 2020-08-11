@@ -58,6 +58,10 @@
 
 /* FIN Spiner */
 
+.horizontal-heading {
+  margin-top: 20px;
+}
+
 #header img {
 width: 100px;
 } 
