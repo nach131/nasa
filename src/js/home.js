@@ -8,21 +8,7 @@
   const $spinner = document.getElementById('spinner');
   const BASE_API = 'https://images-api.nasa.gov/';
   
-  $form.addEventListener("submit",async event => {
-    event.preventDefault()
-    $spinner.classList.add('lds-hourglass', 'mx-auto', 'd-block');
-    const data = new FormData($form)
-    const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
-    // debugger
-    console.log(buscado)
-
-  })
-
-
-  const buscarList = await getDatos(
-    `${BASE_API}search?q=splashdown&page=5`
-  );
-
+  
 
   // debugger
   // console.log(buscarList)
@@ -58,9 +44,12 @@
       showModal();
     });
   }
+  const $carousel = document.getElementById('carousel');
+
 
   function renderAlbumList(lista, $contenedor) {
-    // $contenedor.children[0].remove() // quitar el spiner
+    $carousel.setAttribute("hidden", "");
+    $contenedor.children[0].remove(); // quitar el spiner
     lista.forEach(lista => {
       // console.log(lista)
       const HTMLString = FotoItemTemplate(lista);
@@ -73,7 +62,18 @@
   }
 
   const $fotosContenedor = document.querySelector("#fotos");
-  renderAlbumList(buscarList.collection.items, $fotosContenedor);
+
+  $form.addEventListener("submit",async event => {
+    event.preventDefault()
+    $spinner.classList.add('lds-hourglass', 'mx-auto', 'd-block');
+    const data = new FormData($form)
+    const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
+    // debugger
+    renderAlbumList(buscado.collection.items, $fotosContenedor);
+    
+  })
+
+  // renderAlbumList(buscarList.collection.items, $fotosContenedor);
 
   const $modal = document.getElementById("modal");
   const $overlay = document.getElementById("overlay");
