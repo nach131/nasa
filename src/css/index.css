@@ -66,6 +66,10 @@ width: 100px;
   object-fit: cover;
   /* filter: grayscale(90%); */
 }
+#form {
+  max-width: 200px;
+}
+
 #carousel {
   position: relative;
 }

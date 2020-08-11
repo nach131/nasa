@@ -1,11 +1,24 @@
-console.log("hola mundo!");
-
 (async function load() {
   async function getDatos(url) {
     const respuesta = await fetch(url);
     const datos = await respuesta.json();
     return datos;
   }
+  const $form = document.getElementById("form");
+  const $spinner = document.getElementById('spinner');
+
+  $form.addEventListener("submit", event => {
+    event.preventDefault()
+    $spinner.classList.add('lds-hourglass', 'mx-auto', 'd-block');
+    const data = new FormData($form)
+    debugger
+  })
+
+
+
+
+
+
   const buscarList = await getDatos(
     "https://images-api.nasa.gov/search?q=splashdown&page=5"
   );
@@ -31,7 +44,7 @@ console.log("hola mundo!");
     <div class="card mb-4 shadow-sm" >
     <img src="${foto.links[0].href}" class="card-img-top" alt="..." hidden>
     <div class="card-bg-img" style="background-image:url(${foto.links[0]
-      .href});"></div>
+        .href});"></div>
     <div class="card-body">
       <h5 class="card-title mb-0">${foto.data[0].nasa_id}</h5>
       <span class="badge date">${foto.data[0].date_created.substr(0, 10)}</span>
@@ -57,6 +70,7 @@ console.log("hola mundo!");
   }
 
   function renderAlbumList(lista, $contenedor) {
+    // $contenedor.children[0].remove() // quitar el spiner
     lista.forEach(lista => {
       // console.log(lista)
       const HTMLString = FotoItemTemplate(lista);

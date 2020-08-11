@@ -42,7 +42,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-     
         <div class="collapse navbar-collapse" id="navbar">
           
           <ul class="navbar-nav ml-auto">
@@ -64,16 +63,18 @@
               <a class="nav-link" href="#pide_foto">Contacto</a>
             </li>
           </ul>
-          <div class="">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar Fotos...">
-              <div class="input-group-append">
-                <button class="btn btn-nach">Buscar</button>
+            <form action="" class="buscar" id="form">
+              <div class="input-group">
+                <input name="buscar" type="text" class="form-control" placeholder="Buscar Fotos">
+                <div class="input-group-append">
+                  <button class="btn btn-nach">Buscar</button>
+                </div>
               </div>
-            </div>
-          </div>
+            </form>
+
         </div>
       </div>
+
     </nav>
     <!-- CAROUSEL -->
     <main id="main">
@@ -148,21 +149,8 @@
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row" id="fotos">
-            <!-- <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" >
-            <img src="./src/images/daniel-born-1182903-unsplash.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title mb-0">Las Fotos</h5>
-              <div class="badges mb-2">
-                <span class="badge badge-primary">word 1</span>
-                <span class="badge badge-warning">word 2</span>
-              </div>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            </div>
-          </div>
-
-        </div> -->
+            <div id="spinner" class=""></div>
+  
           </div>
         </div>
       </div>
