@@ -6,34 +6,24 @@
   }
   const $form = document.getElementById("form");
   const $spinner = document.getElementById('spinner');
-
-  $form.addEventListener("submit", event => {
+  const BASE_API = 'https://images-api.nasa.gov/';
+  
+  $form.addEventListener("submit",async event => {
     event.preventDefault()
     $spinner.classList.add('lds-hourglass', 'mx-auto', 'd-block');
     const data = new FormData($form)
-    debugger
+    const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
+    // debugger
+    console.log(buscado)
+
   })
 
 
-
-
-
-
   const buscarList = await getDatos(
-    "https://images-api.nasa.gov/search?q=splashdown&page=5"
+    `${BASE_API}search?q=splashdown&page=5`
   );
-  const buscarListEndeavour = await getDatos(
-    "https://images-api.nasa.gov/search?q=Endeavour&page=32"
-  );
-  const buscarListMarte = await getDatos(
-    "https://images-api.nasa.gov/search?q=Opportunity&page=2"
-  );
-  const buscarListTierra = await getDatos(
-    "https://images-api.nasa.gov/search?q=earth&page=1"
-  );
-  const buscarListISS = await getDatos(
-    "https://images-api.nasa.gov/search?q=iss&page=1"
-  );
+
+
   // debugger
   // console.log(buscarList)
 
@@ -84,15 +74,6 @@
 
   const $fotosContenedor = document.querySelector("#fotos");
   renderAlbumList(buscarList.collection.items, $fotosContenedor);
-
-  // const $issContenedor = document.getElementById('iss')
-  // renderAlbumList(buscarListISS.collection.items, $issContenedor)
-
-  // const $marteContenedor = document.getElementById('marte')
-  // renderAlbumList(buscarListMarte.collection.items, $marteContenedor)
-
-  // const $fotosContenedor = document.querySelector('#tierra')
-  // renderAlbumList(buscarListTierra.collection.items, $fotosContenedor)
 
   const $modal = document.getElementById("modal");
   const $overlay = document.getElementById("overlay");
