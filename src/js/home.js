@@ -10,11 +10,6 @@
   
   
 
-  // debugger
-  // console.log(buscarList)
-
-
-
   function FotoItemTemplate(foto) {
     //   var str = foto.data[0].date_created
     // console.log(str ,str.substr(0, 10))
@@ -40,28 +35,10 @@
     return html.body.children[0];
   }
 
-  function addEventClick($element) {
-    $element.addEventListener("click", () => {
-      // alert("clikazo");
-      showModal();
-    });
-  }
+
   const $carousel = document.getElementById('carousel');
 
 
-  function renderAlbumList(lista, $contenedor) {
-    $carousel.setAttribute("hidden", "");
-    $contenedor.children[0].remove(); // quitar el spiner
-    lista.forEach(lista => {
-      // console.log(lista)
-      const HTMLString = FotoItemTemplate(lista);
-      const AlbumItems = CrearPlantilla(HTMLString);
-      $contenedor.append(AlbumItems);
-      addEventClick(AlbumItems);
-      // console.log(HTMLString)
-      // console.log(HTMLString)
-    });
-  }
 
   const $fotosContenedor = document.querySelector("#fotos");
 
@@ -72,18 +49,44 @@
     event.preventDefault()
     $spinner.classList.add('lds-hourglass', 'mx-auto', 'd-block');
     const data = new FormData($form)
-    const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
+    // const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
+    const {
+      collection:{
+        items: buscado
+      }
+    } = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
     // debugger
-    renderAlbumList(buscado.collection.items, $fotosContenedor);
+    renderAlbumList(buscado, $fotosContenedor);
     // ElementoEncontrado(buscado.collection.metadata.total_hits);
   })
 
+  function renderAlbumList(lista, $contenedor) {
+    $carousel.setAttribute("hidden", "");
+    $contenedor.children[0].remove(); // quitar el spiner
+    // document.querySelector('#fotos').remove()
+    lista.forEach(lista => {
+      // console.log(lista)
+      const HTMLString = FotoItemTemplate(lista);
+      const AlbumItems = CrearPlantilla(HTMLString);
+      $contenedor.append(AlbumItems);
+      addEventClick(AlbumItems);
+      // console.log(HTMLString)
+      // console.log(HTMLString)
+    });
+  }
   // renderAlbumList(buscarList.collection.items, $fotosContenedor);
 
 
   /* =====================================
           MODAL
 ======================================*/
+  function addEventClick($element) {
+    $element.addEventListener("click", () => {
+      // alert("clikazo");
+      showModal();
+    });
+  }
+
   const $modal = document.getElementById("modal");
   const $overlay = document.getElementById("overlay");
   // const $cerrarModal = document.getElementById("cerrar-modal");
