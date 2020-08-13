@@ -90,14 +90,13 @@ function renderAlbumList(lista, $contenedor) {
   });
 }
 
+/* =====================================
+      Quita txt busqueda
+======================================*/
 const $input = document.getElementById("input");
 $input.onmouseover = function () {
   $input.value = '';
-
-  // $fotos.remove(); // quitar el spiner
-
 }
-
 /* =====================================
       Quita Hijos de Album
 ======================================*/
@@ -106,7 +105,6 @@ function removeAllChildFotos(parent) {
     parent.removeChild(parent.lastChild);
   }
 }
-
 $input.onclick = function () {
   removeAllChildFotos($fotos)
   $fotos.append($loader);
@@ -115,7 +113,6 @@ $input.onclick = function () {
     class: ""
   });
 }
-
 /* =====================================
         MODAL
 ======================================*/
