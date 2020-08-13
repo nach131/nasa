@@ -32,6 +32,11 @@ function FotoItemTemplate(foto) {
     </div>
   </div>`;
 }
+
+function AvisoTemplate(resultado){
+
+}
+
 function CrearPlantilla(HTMLString) {
   const html = document.implementation.createHTMLDocument();
   html.body.innerHTML = HTMLString;
@@ -40,7 +45,6 @@ function CrearPlantilla(HTMLString) {
 
 const $carousel = document.getElementById('carousel');
 const $fotosContenedor = document.querySelector("#fotos");
-
 
 /* =====================================
          BUSCAR
@@ -65,20 +69,37 @@ $form.addEventListener("submit", async event => {
   $spinner.classList.add('spinner-border');
   const data = new FormData($form)
   // const buscado = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
-  const {
-    collection: {
-      items: buscado
-    }
-  } = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
+  // const {
+  //   collection: {
+  //     items: buscado
+  //   }
+  // } = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
+
+  const { collection: buscado } = await getDatos(`${BASE_API}search?q=${data.get('buscar')}`)
   // debugger
-  renderAlbumList(buscado, $fotosContenedor);
+  renderAlbumList(buscado.items, $fotosContenedor);
   // ElementoEncontrado(buscado.collection.metadata.total_hits);
+ShowAviso(buscado.metadata.total_hits)
 })
+
+function ShowAviso(busqueda) {
+
+  if (busqueda > "0") {
+
+    console.log("tienes datos", busqueda);
+    // const HTMLString = AvisoTemplate(busqueda)
+    // const BusquedaTrue = CrearPlantilla(HTMLString);
+
+  } else {
+    console.log("no tienes nada");
+  }
+
+  debugger;
+}
 
 function renderAlbumList(lista, $contenedor) {
   $carousel.setAttribute("hidden", "");
   $contenedor.children[0].remove(); // quitar el spiner
-  // document.querySelector('#fotos').remove()
   lista.forEach(lista => {
     // console.log(lista)
     const HTMLString = FotoItemTemplate(lista);
@@ -113,6 +134,8 @@ $input.onclick = function () {
     class: ""
   });
 }
+
+
 /* =====================================
         MODAL
 ======================================*/
