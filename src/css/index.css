@@ -57,7 +57,9 @@
 }
 
 /* FIN Spiner */
-
+.album{
+  padding-top: 10px!important;
+}
 .horizontal-heading {
   margin-top: 20px;
 }

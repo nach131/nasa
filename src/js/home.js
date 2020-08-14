@@ -13,6 +13,8 @@ const $fotos = document.getElementById('fotos');
 
 
 
+
+
 function FotoItemTemplate(foto) {
   //   var str = foto.data[0].date_created
   // console.log(str ,str.substr(0, 10))
@@ -33,8 +35,19 @@ function FotoItemTemplate(foto) {
   </div>`;
 }
 
-function AvisoTemplate(resultado){
-
+function AvisoTemplate(titulo, mensaje) {
+  return (`<div class="content-box-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center  wow slideInDown">
+        <div class="horizontal-heading">
+          <h2>${titulo}</h2>
+          <h5>${mensaje}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`)
 }
 
 function CrearPlantilla(HTMLString) {
@@ -85,16 +98,15 @@ ShowAviso(buscado.metadata.total_hits)
 function ShowAviso(busqueda) {
 
   if (busqueda > "0") {
-
-    console.log("tienes datos", busqueda);
-    // const HTMLString = AvisoTemplate(busqueda)
-    // const BusquedaTrue = CrearPlantilla(HTMLString);
-
+    const HTMLString = AvisoTemplate(busqueda, "Resultados encontrados")
+    const Aviso = CrearPlantilla(HTMLString)
+    $aviso.append(Aviso)
   } else {
-    console.log("no tienes nada");
+    const HTMLString = AvisoTemplate("¡Vaya!","No se han encontrado resultados para su búsqueda")
+    const Aviso = CrearPlantilla(HTMLString)
+    $aviso.append(Aviso)
   }
 
-  debugger;
 }
 
 function renderAlbumList(lista, $contenedor) {
@@ -133,6 +145,7 @@ $input.onclick = function () {
     id: "spinner",
     class: ""
   });
+  removeAllChildFotos($aviso)
 }
 
 
